@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import { connect } from './database';
 
 class App {
   public app: Application;
@@ -8,6 +9,7 @@ class App {
     this.initializeMiddleware();
     this.initializeRoutes();
     this.interceptionError();
+    connect();
   };
 
   initializeMiddleware(){
