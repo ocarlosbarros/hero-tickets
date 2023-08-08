@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import { connect } from './database';
+import { errorMiddleware } from './middleware/error.middleware';
 
 class App {
   public app: Application;
@@ -22,7 +23,7 @@ class App {
   };
 
   interceptionError(){
-    // this.app.use();
+    this.app.use(errorMiddleware);
   }
 
   listen(){
