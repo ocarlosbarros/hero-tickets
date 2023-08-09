@@ -4,25 +4,41 @@ import { User } from "./User";
 
 class Event {
   public title:string;
-  public location: Location
   public date: Date;
+  public city: string;
   public description: string;
   public banner: string;
+  public categories: string[];
+  public flyers: string[];
   public coupons: string[];
+  public location: Location
   public participants: User[];
   public price: Price[];
-  public city: string;
 
-  constructor(title: string, location: Location, date: Date, description: string, banner: string, coupons: string[], participants: User[], price: Price[], city: string){
+  constructor(
+    title: string,
+    date: Date,
+    city: string,
+    description: string,
+    banner: string,
+    categories: string[],
+    flyers: string[],
+    coupons: string[],
+    location: Location,
+    participants: User[],
+    price: Price[],
+    ){
     this.title = title;
-    this.location = location;
     this.date = date;
+    this.city = city; 
     this.description = description;
     this.banner = banner;
+    this.categories = categories
+    this.flyers = flyers;
     this.coupons = coupons;
+    this.location = location;
     this.participants = participants;
     this.price = price;
-    this.city = city; 
   };
 
 }
