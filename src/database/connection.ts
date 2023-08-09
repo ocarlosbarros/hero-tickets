@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import config from "../../config/environment-variables";
+import config from "./config/environment-variables";
 
 export async function connect(){
   try {
