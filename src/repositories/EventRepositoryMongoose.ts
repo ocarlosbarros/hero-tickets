@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
-import { IEventRepository } from "./IEventRepository";
-import { Event } from "../database/entities/Event";
+import mongoose from 'mongoose';
+
+import { IEventRepository } from './IEventRepository';
+import { Event } from '../database/entities/Event';
 
 const eventSchema = new mongoose.Schema({
   title: String,
@@ -13,19 +14,19 @@ const eventSchema = new mongoose.Schema({
   coupons: [String],
   location: {
     latitude: String,
-    longitude: String
+    longitude: String,
   },
   participants: {
     type: Array,
-    ref: 'User'
+    ref: 'User',
   },
   price: {
     type: Array,
-    ref: 'Price'
+    ref: 'Price',
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
 });
 
@@ -36,8 +37,9 @@ class EventRepositoryMongoose implements IEventRepository {
     const eventModel = new EventModel(event);
 
     await eventModel.save();
+    console.log(event);
     return event;
   }
 }
 
-export { EventRepositoryMongoose }
+export { EventRepositoryMongoose };
