@@ -6,9 +6,9 @@ describe('Events test', () => {
   const app = new App();
   const server = app.app;
 
-  it('/POST Event', async () => {
+  it('/POST Creates an event', async () => {
 
-    const validEvent = {
+    const event = {
       title: 'Jorge & Mateus',
       date: new Date(),
       city: 'Belo Horizonte',
@@ -26,16 +26,24 @@ describe('Events test', () => {
     
       const response = await request(server)
       .post('/events')
-      .field('title', validEvent.title)
-      .field('description', validEvent.description)
-      .field('city', validEvent.city)
-      .field('location[latitude]', validEvent.location.latitude)
-      .field('location[longitude]', validEvent.location.longitude)
-      .field('price[sector]', validEvent.price[0].sector)
-      .field('price[amount]', validEvent.price[0].amount)
+      .field('title', event.title)
+      .field('description', event.description)
+      .field('city', event.city)
+      .field('location[latitude]', event.location.latitude)
+      .field('location[longitude]', event.location.longitude)
+      .field('price[sector]', event.price[0].sector)
+      .field('price[amount]', event.price[0].amount)
       .attach(
         'banner',
         '/home/carlosbarros/Pictures/jorge-e-mateus-banner.png',
+      )
+      .attach(
+        'flyers',
+        '/home/carlosbarros/Pictures/jorge-e-mateus-flyer-1.jpeg',
+      )
+      .attach(
+        'flyers',
+        '/home/carlosbarros/Pictures/jorge-e-mateus-flyer-2.jpeg',
       )
         
       if(response.error)  {

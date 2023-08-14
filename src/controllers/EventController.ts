@@ -5,8 +5,21 @@ import { EventService } from '../services/EventService';
 class EventController {
   constructor(private eventService: EventService) {}
   async create(request: Request, response: Response, next: NextFunction) {
+    let event: Event = request.body;
+    const files = request.files as any;
+
+    if(files){
+      const banner = files.banner[0];
+      const flyers = files.flyers;
+
+      event = {
+        ...event,
+        banner: banner.filename,
+        flyers: flyers.map((flyer: any) => flyer.filename)
+      }
+    }
+
     try {
-      const event: Event = request.body;
       const created = await this.eventService.create(event);
 
       if (!created) {
