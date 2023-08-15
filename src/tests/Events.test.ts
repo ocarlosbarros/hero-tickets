@@ -1,6 +1,7 @@
 import request from 'supertest';
 
 import { App } from '../app';
+import { now } from 'mongoose';
 
 describe('Events test', () => {
   const app = new App();
@@ -27,6 +28,7 @@ describe('Events test', () => {
       const response = await request(server)
       .post('/events')
       .field('title', event.title)
+      .field('date', Date.now())
       .field('description', event.description)
       .field('city', event.city)
       .field('location[latitude]', event.location.latitude)
